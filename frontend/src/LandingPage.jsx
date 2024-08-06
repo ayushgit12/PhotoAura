@@ -20,12 +20,12 @@ const LandingPage = () => {
 
   return (
      <>
-     <div className='bg-[#FBFFF4]'>
+     <div className='bg-[#FBFFF4] min-h-screen'>
        <div className='bg-cyan-400 h-20'>
-        <p className='font-semibold text-3xl flex items-center gap-2 h-full ml-6'><LuScanFace size={30} /> PhotoAura</p>
+        <p onClick={()=>navigate("/")} className='cursor-pointer select-none font-semibold text-3xl flex items-center gap-2 h-full ml-6'><LuScanFace size={30} /> PhotoAura</p>
        </div>
      <div className='flex justify-between mx-4 mt-4 flex-wrap'>
-       <div>
+       <div className='select-none'>
          <p data-aos='fade-right' className='text-9xl my-6 font-bold'>See,</p>
          <p data-aos-delay='800' data-aos='fade-right' className='text-9xl my-6 font-bold'>Know,</p>
          <p data-aos-delay='1600' data-aos='fade-right' className='text-9xl my-6 font-bold'>Learn !</p>
@@ -33,7 +33,7 @@ const LandingPage = () => {
          <p className='text-2xl mt-2 md:mb-0 mb-6'><span className='underline flex items-center gap-2 text-3xl'><LuScanFace />PhotoAura</span> your visual search companion!</p>
          </div>
        <div className='relative md:mx-0 mx-auto'>
-         <img src={img} className='h-[650px] rounded-xl' alt="" /> 
+         <img src={img} className='border border-black shadow-xl h-[650px] rounded-xl' alt="" /> 
          <img className='absolute top-16 h-32 left-32' src={magglass} alt="" />
          <p className='absolute text-xl rounded-2xl py-1 text-center bg-gray-100 w-48 md:top-20 top-4 pl-4 md:right-64 right-1/2 flex items-center gap-4 border-black border'><FaMagnifyingGlass size={18} /><TypeAnimation 
          sequence={

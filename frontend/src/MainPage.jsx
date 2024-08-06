@@ -5,12 +5,15 @@ import toast from 'react-hot-toast';
 import { Toaster } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { FaHome } from "react-icons/fa";
+import {url} from './helper.js';
+import {MutatingDots} from 'react-loader-spinner' 
 
 
 const MainPage = () => {
 
      const [file, setFile] = useState();  
      const [result, setResult] = useState(""); 
+     const [loading, setLoading] = useState(false);
      const navigate = useNavigate();
 
      const handleDetect = async () => {
@@ -18,11 +21,12 @@ const MainPage = () => {
                toast.error('Please upload an image');
                return;
           }
+          setLoading(true);
             const formData = new FormData();
             console.log(file);
             formData.append('file', file);
             try{
-            const res = await axios.post('http://localhost:8000/predict_image', formData)
+            const res = await axios.post(`${url}/predict_image`, formData)
             setResult(res.data);
             localStorage.setItem('result', res.data);
                navigate('/result');
@@ -45,6 +49,7 @@ const MainPage = () => {
   return (
     <div>
      <Toaster />
+     {loading && <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 scale-[200%]' ><MutatingDots color='#000' loading={loading} secondaryColor='cyan' /> </div>}
 
      <div className='bg-[#FBFFF4]'>
        <div className='bg-cyan-400 h-20'>

@@ -4,7 +4,8 @@ import uvicorn
 from prediction import read_image, pre_process, predict
 
 app = FastAPI()
-origins = ["https://photo-aura.vercel.app"]
+# origins = ["https://photo-aura.vercel.app"]
+origins = ["*"]
            
 
 app.add_middleware(

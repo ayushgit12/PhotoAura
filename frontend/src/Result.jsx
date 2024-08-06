@@ -8,6 +8,7 @@ import { FaHome } from "react-icons/fa";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { TypeAnimation } from 'react-type-animation';
 import { HiOutlineExternalLink } from "react-icons/hi";
+import Delay from 'react-delay';
 
 
 const Result = () => {
@@ -44,12 +45,19 @@ const Result = () => {
     const chat = model.startChat({ history: [] });
     useEffect(() => {
       async function fun() {
+        try{
         const result1 = await chat.sendMessage(
           `give a small description about ${localStorage.getItem("result")} in 100 words without any heading.`
         );
-        setDesc(result1.response.text());
+       setDesc(result1.response.text());
       }
+     catch (err) {
+      console.log(err);
+      setDesc('No Description Found');
+    }
+    }
       fun();
+      
     
     }, []);
 
@@ -74,6 +82,7 @@ const Result = () => {
                <p className='text-3xl m-3 mx-6 text-green-500'>{res.replace('_', ' ')}</p>
                <div className='text-xl bg-white mx-6 p-3 w-fit'>
                 {console.log(desc)}
+                <Delay wait={3000}>
             <TypeAnimation 
             className=''
           sequence={
@@ -81,10 +90,11 @@ const Result = () => {
                      1000,
                      '...',
                      1000,
-                     desc,
+                     desc
                 ]
               } 
               />
+              </Delay>
               </div>
 
               <p
